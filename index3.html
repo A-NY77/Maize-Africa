@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Maize Production & Area Harvested in Africa</title>
+
+  <!-- OpenLayers UMD bundle -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@7.3.0/ol.css" />
+  <script src="https://cdn.jsdelivr.net/npm/ol@7.3.0/dist/ol.js"></script>
+
+  <!-- Fisher–Jenks classification -->
+  <script src="https://cdn.jsdelivr.net/npm/simple-statistics@7.8.3/dist/simple-statistics.min.js"></script>
+
+  <!-- Your custom CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Title -->
+  <header>
+    <h2>Maize Production & Area Harvested in Africa</h2>
+    <p>Compare two years side by side. Choose a mode, adjust year sliders, and explore patterns over time.</p>
+  </header>
+
+  <!-- Controls -->
+  <div id="controls">
+    <label><strong>Mode:</strong></label>
+    <select id="mapMode">
+      <option value="yield">Yield (Choropleth)</option>
+      <option value="dotdensity">Dot Density</option>
+      <option value="bivariate">Bivariate Blend</option>
+    </select>
+
+    <label><strong>Year A:</strong></label>
+    <input type="range" id="yearA" min="1961" max="2023" value="1994" />
+    <span id="yearLabelA">1994</span>
+
+    <label><strong>Year B:</strong></label>
+    <input type="range" id="yearB" min="1961" max="2023" value="2023" />
+    <span id="yearLabelB">2023</span>
+  </div>
+
+  <!-- Main Panel with Maps and Legend -->
+  <div id="mainPanel">
+    <div id="mapContainer">
+      <div id="mapA" class="map"></div>
+      <div id="mapB" class="map"></div>
+    </div>
+
+    <!-- Legend Panel -->
+    <div id="legendPanel">
+      <strong>Legend Options</strong>
+      <div id="legendControls">
+        <label><input type="checkbox" id="showArea" checked /> Area Harvested</label><br />
+        <label><input type="checkbox" id="showProd" checked /> Production</label>
+      </div>
+
+      <!-- Visual Legend (optional static SVG or dynamic JS-rendered) -->
+      <div id="legendBox">
+        <!-- You can paste SVG legend here if needed -->
+      </div>
+
+      <div style="margin-top: 20px; font-size: 11px; color: #777;">
+        <p><em>Note:</em> Based on FAO statistics. Colors reflect natural breaks per year.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tooltip -->
+  <div id="tooltip"></div>
+
+  <!-- JS logic (no module!) -->
+  <script src="dual.js"></script>
+</body>
+</html>
